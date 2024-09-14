@@ -1,0 +1,166 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+
+    Layout = null;
+        var Page = Model;
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GBS</title>
+    <style>
+        body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        }
+
+        header {
+        background-color: white;
+        color: white;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        }
+
+        header img {
+        height: 50px;
+        }
+
+        .header-titles {
+        text-align: right;
+            display: flex;
+            gap: 12px
+        }
+
+        .header-titles h1 {
+        margin: 0;
+        }
+
+        .names {
+        margin-top: 5px;
+        font-size: 14px;
+        }
+
+        .names span {
+        color: black;
+        }
+
+        section {
+
+        background-size: cover;
+        background-position: center;
+        color: white;
+        padding: 50px;
+        text-align: center;
+        height: 500px;
+        }
+
+        footer {
+            background-color: #10375c;
+        color: white;
+        text-align: center;
+        padding: 10px;
+        position: relative;
+        }
+
+       
+        
+
+.social-icons {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: center;
+    gap: 15px;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column; 
+    text-align: center; 
+}
+
+.logo-link {
+    display: block;
+}
+
+.logo-img {
+    height: 40px; 
+    width: 40px;
+    object-fit: cover; 
+        }
+
+.logo-info {
+    margin-top: 10px;
+}
+
+.logo-name {
+    font-size: 14px; 
+    margin: 0;
+    color: #333; 
+}
+
+.logo-description {
+    font-size: 12px; 
+    margin: 5px 0 0;
+    color: #666; 
+    }
+        footer p {
+            font-size: 12px; 
+            margin: 5px 0 0;
+            color: black;
+            line-height: 1.4; 
+        }
+       
+        </style>
+</head>
+<body>
+
+    <header>
+       
+        <img src="/media/gbs-dubai-1.webp" alt="Logo"> 
+        <div class="header-titles">
+            @foreach (var items in ((Umbraco.Cms.Web.Common.PublishedModels.Gbs)Model).HeaderItems)
+            {
+                var ChildNames = items.Content;
+                <div class="names">
+                    <span>@(((Umbraco.Cms.Web.Common.PublishedModels.HeaderNames)ChildNames).Names)</span>
+                </div>
+            }
+           
+        </div>
+    </header>
+
+    <section style="background-image: url('media/gbs-dubai_students-classroom-6-1.webp');">
+        @(((Umbraco.Cms.Web.Common.PublishedModels.Gbs)Model).Page)
+       
+    </section>
+
+    <footer>
+        <div class="social-icons">
+         @foreach (var items in ((Umbraco.Cms.Web.Common.PublishedModels.Gbs)Model).Icons)
+        {
+            var Childs = items.Content;
+                <div class="logo-container">
+                    <a href="#" class="logo-link">
+                        <img src="@(((Umbraco.Cms.Web.Common.PublishedModels.SocialIcons)items.Content).Icon.LocalCrops)" alt="Logo" class="logo-img">
+                    </a>
+                    <div class="logo-info">
+                        <h2 class="logo-name">@(((Umbraco.Cms.Web.Common.PublishedModels.SocialIcons)items.Content).IconName)</h2>
+                        <p class="logo-description">@(((Umbraco.Cms.Web.Common.PublishedModels.SocialIcons)items.Content).Description)</p>
+                    </div>
+                </div>
+        }
+        </div>
+            
+            
+    </footer>
+
+</body>
+</html>
